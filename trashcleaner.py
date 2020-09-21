@@ -22,21 +22,18 @@ def get_folder_tree(target_dir):
     :return: folder tree list
     """
 
-    folder_tree = []
-    [folder_tree.append(i[0]) for i in os.walk(target_dir)]
-
-    return folder_tree
+    return [i[0] for i in os.walk(target_dir)]
 
 
 def trash_cleaner(target_dir, delete_flag=False):
 
     # Get folder tree list
-    folder_tree_list = get_folder_tree(target_dir=target_dir)
+    folder_tree = get_folder_tree(target_dir=target_dir)
 
     files = []
     flagged_files = []
 
-    for folder in folder_tree_list[::-1]:
+    for folder in folder_tree[::-1]:
 
         print(f'\nFound in "{folder}":')
 
@@ -51,7 +48,7 @@ def trash_cleaner(target_dir, delete_flag=False):
         for file in flagged_files:
 
             # Check if the parent file exist
-            parent_file = get_files(folder=folder, file_mask=os.path.splitext(file))
+            parent_file = get_files(folder=folder, file_mask=os.path.basename(file).split('.')[0] + '.*')
 
             # Delete child file
             if len(parent_file) == 1:
