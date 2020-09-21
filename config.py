@@ -1,3 +1,3 @@
-TARGET_DIR = 'C:\\Users\\VSem\\PycharmProjects\\dirtreeclean\\trash'
+TARGET_DIR = ''
 FILE_MASK = '*.bak'
 DELETE_FLAG = True

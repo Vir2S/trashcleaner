@@ -51,7 +51,7 @@ def trash_cleaner(target_dir, delete_flag=False):
         for file in flagged_files:
 
             # Check if the parent file exist
-            parent_file = get_files(folder=folder, file_mask=os.path.basename(file).split('.')[0] + '.*')
+            parent_file = get_files(folder=folder, file_mask=os.path.splitext(file))
 
             # Delete child file
             if len(parent_file) == 1:
