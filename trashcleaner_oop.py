@@ -22,7 +22,7 @@ class TrashCleaner:
         self.folder_tree = [i[0] for i in os.walk(self.target_dir)]
         return self.folder_tree
 
-    def get_all_files(self, file_mask='*.*'):
+    def get_all_files(self, file_mask='*'):
         self.get_folder_tree()
 
         for folder in self.folder_tree[::-1]:
@@ -40,6 +40,7 @@ class TrashCleaner:
         return self.flagged_files
 
     def remove_trash_files(self, file_mask=file_mask):
+        # self.get_folder_tree()
         self.get_all_files()
         self.get_flagged_files()
 
@@ -50,5 +51,6 @@ class TrashCleaner:
                 continue
             print('not ok\n')
             for file in flagged:
+                print(parent.findall(file))
                 if file.split('.')[0] in [parent_file.split('.')[0] for parent_file in parent]:
                     print('Delete', file)
