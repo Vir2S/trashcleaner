@@ -22,7 +22,7 @@ class TrashCleaner:
         self.folder_tree = [i[0] for i in os.walk(self.target_dir)]
         return self.folder_tree
 
-    def get_all_files(self, file_mask='*.*'):
+    def get_all_files(self, file_mask='*'):
         self.get_folder_tree()
 
         for folder in self.folder_tree[::-1]:
