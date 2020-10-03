@@ -55,11 +55,10 @@ def trash_cleaner(target_dir, delete_flag=False):
                 os.remove(file)
                 print(f'Delete file "{os.path.basename(file)}" - OK!')
 
-        # Check if current folder is empty
-        files = get_files(folder=folder, file_mask='*.*')
-
         # Delete empty folder
         if delete_flag:
+            # Check if current folder is empty
+            files = get_files(folder=folder, file_mask='*.*')
             if len(files) == 0 and get_folder_tree(target_dir=folder)[-1] == folder:
                 os.rmdir(folder)
                 print(f'Empty folder "{folder}". Delete - OK!')
